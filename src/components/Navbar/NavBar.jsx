@@ -1,6 +1,6 @@
 // src/components/Navbar/Navbar.jsx
 
- import React, { useState } from 'react';
+  import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
