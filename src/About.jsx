@@ -1,50 +1,59 @@
- import './pages/About.css';
- import AboutSection from "./components/AboutSection/AboutSection";
-import GithubStats from "./components/GithubStats/GithubStats.jsx";
-import SkillCard from "./components/SkillCard/SkillCard";
-const SKILLS = [
-  { name: 'HTML5', level: 'Advanced', icon: '🌐' },
-  { name: 'CSS3', level: 'Advanced', icon: '🎨' },
-  { name: 'JavaScript', level: 'Advanced', icon: '⚡' },
-  { name: 'React', level: 'Intermediate', icon: '⚛️' }
-];
+  import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function About() {
-  return (
-    <div className='about-page container'>
-      <AboutSection />
+import Navbar from './components/Navbar/NavBar.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
-      <section
-        id='skills'
-        className='skills-section'
-        style={{ marginTop: '40px' }}
-      >
-        <h2>Skills</h2>
+import Home from './Home.jsx';
+import About from './About.jsx';
+import Projects from './Projects.jsx';
+import Contact from './Contact.jsx';
+import NotFound from './NotFound.jsx';
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '20px'
-          }}
-        >
-          {SKILLS.map(s => (
-            <SkillCard
-              key={s.name}
-              name={s.name}
-              level={s.level}
-              icon={s.icon}
-            />
-          ))}
-        </div>
-      </section>
+function App() {
+    const [theme, setTheme] = useState('light');
 
-      <section style={{ marginTop: '40px' }}>
-        <h2>GitHub Activity</h2>
-        <GithubStats username='advithhebbar-07' />
-      </section>
-    </div>
-  );
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+    }, []);
+
+    useEffect(() => {
+        document.body.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
+
+    return (
+        <BrowserRouter>
+            <div className="app-shell">
+
+                <Navbar
+                    theme={theme}
+                    toggleTheme={toggleTheme}
+                />
+
+                <main className="page-content">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </main>
+
+                <Footer />
+
+            </div>
+        </BrowserRouter>
+    );
 }
 
-export default About;
+export default App;

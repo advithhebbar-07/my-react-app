@@ -1,8 +1,8 @@
 // src/components/Navbar/Navbar.jsx
 
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Navbar.css';
+import './NavBar.css';
 
 function Navbar({ theme, toggleTheme }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
