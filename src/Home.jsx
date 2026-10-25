@@ -4,7 +4,7 @@ import ProjectCard from './components/ProjectCard/ProjectCard';
 import Hero from './components/Hero/Hero';
 import AboutSection from './components/AboutSection/AboutSection';
 import SkillCard from './components/SkillCard/SkillCard';
- import GithubStats from './components/GithubStats/GithubStats.jsx';S
+ import GithubStats from './components/GithubStats/temp.jsx';
 import Contact from './Contact';
 
 function Home() {
