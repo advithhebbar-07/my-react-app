@@ -1,13 +1,14 @@
  
-import { projectsData } from './data/projects.js';
+import { projectsData } from './data/projects';
 import ProjectCard from './components/ProjectCard/ProjectCard';
 import Hero from './components/Hero/Hero';
 import AboutSection from './components/AboutSection/AboutSection';
 import SkillCard from './components/SkillCard/SkillCard';
-import Contact from './Contact.jsx';
+import GithubStats from './components/GithubStats/GithubStats';
+import Contact from './Contact';
 
 function Home() {
-  const featured = projectsData.filter((project) => project.featured);
+  const featured = projectsData.filter((p) => p.featured);
 
   return (
     <div className="home-page">
@@ -16,6 +17,8 @@ function Home() {
       <AboutSection />
 
       <SkillCard />
+
+      <GithubStats />
 
       <section className="featured-section container" id="projects">
         <h2>Featured Projects</h2>
@@ -27,8 +30,8 @@ function Home() {
             gap: '30px',
           }}
         >
-          {featured.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {featured.map((p) => (
+            <ProjectCard key={p.id} project={p} />
           ))}
         </div>
       </section>

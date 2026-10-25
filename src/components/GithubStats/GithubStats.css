@@ -1,8 +1,77 @@
-.github-stats { 
-    display: flex; 
-    gap: 20px; 
-    align-items: center; 
-    background: white; 
-    padding: 20px; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+ 
+.github-activity {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.github-activity h2 {
+  color: var(--text);
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.github-underline {
+  width: 36px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 5px;
+  margin: 0 auto 28px;
+}
+
+.github-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 22px;
+  text-align: left;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-profile-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+}
+
+.github-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.github-profile-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.github-profile-info p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.github-profile-info span {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 500px) {
+  .github-profile-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .github-avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
