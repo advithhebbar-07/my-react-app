@@ -1,5 +1,5 @@
  
-import './GithubStats.css';
+ import './GithubStats.css';
 
 function GithubStats() {
   const username = 'advithhebbar-07';
