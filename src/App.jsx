@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer.jsx';
 
 import Home from './Home.jsx';
 import About from './About.jsx';
-import Skills from './Skills.jsx';
+import Skills from './skills.jsx';
 import Projects from './Projects.jsx';
 import Contact from './Contact.jsx';
 import NotFound from './NotFound.jsx';
