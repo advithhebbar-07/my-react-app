@@ -1,7 +1,8 @@
- import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+ 
+import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
- import Navbar from './components/Navbar/NavBar.jsx';
+import Navbar from './components/Navbar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 import Home from './Home.jsx';
@@ -11,50 +12,36 @@ import Contact from './Contact.jsx';
 import NotFound from './NotFound.jsx';
 
 function App() {
-    const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('theme') || 'light'
+  );
 
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
-        if (savedTheme) {
-            setTheme(savedTheme);
-        }
-    }, []);
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
-    useEffect(() => {
-        document.body.dataset.theme = theme;
-        localStorage.setItem('theme', theme);
-    }, [theme]);
+  return (
+    <div className="app-shell">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-    const toggleTheme = () => {
-        setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-    };
+      <main className="page-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
 
-    return (
-        <BrowserRouter>
-            <div className="app-shell">
-
-                <Navbar
-                    theme={theme}
-                    toggleTheme={toggleTheme}
-                />
-
-                <main className="page-content">
-                     <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/skills" element={<About />} />
-    <Route path="/projects" element={<Projects />} />
-    <Route path="/contact" element={<Contact />} />
-    <Route path="*" element={<NotFound />} />
-</Routes>
-                </main>
-
-                <Footer />
-
-            </div>
-        </BrowserRouter>
-    );
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
